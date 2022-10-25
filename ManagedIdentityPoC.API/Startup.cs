@@ -52,6 +52,17 @@ namespace ManagedIdentityPoC.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ManagedIdentityPoC.API", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllRequests", builder =>
+                {
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed(origin => origin == "http://localhost:3000")
+                    .AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +74,8 @@ namespace ManagedIdentityPoC.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ManagedIdentityPoC.API v1"));
             }
+
+            app.UseCors("AllRequests");
 
             app.UseHttpsRedirection();
 
