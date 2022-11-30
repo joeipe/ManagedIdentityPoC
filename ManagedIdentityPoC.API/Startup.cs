@@ -39,10 +39,18 @@ namespace ManagedIdentityPoC.API
                 // App Registry example
                 // var credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
 
-                // Managed Identity
+                // Managed Identity - System assigned
                 var credential = new DefaultAzureCredential();
                 var storageUri = Configuration.GetValue<string>("StorageUri");
                 services.AddScoped(c => new TableServiceClient(new Uri(storageUri), credential));
+
+                /*
+                // Managed Identity - User Assigned
+                string userAssignedClientId = ""; //Give Client ID of User Managed Identity
+                var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = userAssignedClientId });
+                var storageUri = Configuration.GetValue<string>("StorageUri");
+                services.AddScoped(c => new TableServiceClient(new Uri(storageUri), credential));
+                */
             }
             services.AddScoped<IAppService, AppService>();
             services.AddScoped<IPersonRepository, PersonRepository>();
