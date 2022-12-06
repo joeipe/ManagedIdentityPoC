@@ -20,13 +20,13 @@ namespace ManagedIdentityPoC.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllTodo()
+        public async Task<ActionResult> GetAllPerson()
         {
             return Response(await _appService.GetAllPersonAsync());
         }
 
         [HttpGet("{partitionKey}/{rowKey}")]
-        public async Task<ActionResult> GetTodoById(string partitionKey, string rowKey)
+        public async Task<ActionResult> GetPersonById(string partitionKey, string rowKey)
         {
             var vm = await _appService.GetPersonByIdAsync(partitionKey, rowKey);
 
@@ -39,7 +39,7 @@ namespace ManagedIdentityPoC.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddTodoAsync([FromBody] PersonDto value)
+        public async Task<ActionResult> AddPersonAsync([FromBody] PersonDto value)
         {
             await _appService.AddPersonAsync(value);
 
@@ -47,7 +47,7 @@ namespace ManagedIdentityPoC.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateTodoAsync([FromBody] PersonDto value)
+        public async Task<ActionResult> UpdatePersonAsync([FromBody] PersonDto value)
         {
             await _appService.UpdatePersonAsync(value);
 
@@ -55,7 +55,7 @@ namespace ManagedIdentityPoC.API.Controllers
         }
 
         [HttpDelete("{partitionKey}/{rowKey}")]
-        public async Task<ActionResult> DeleteTodoAsync(string partitionKey, string rowKey)
+        public async Task<ActionResult> DeletePersonAsync(string partitionKey, string rowKey)
         {
             await _appService.DeletePersonAsync(partitionKey, rowKey);
 
