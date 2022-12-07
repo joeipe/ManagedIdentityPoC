@@ -2,9 +2,13 @@ using Azure.Data.Tables;
 using Azure.Identity;
 using ManagedIdentityPoC.API.Configurations;
 using ManagedIdentityPoC.Application.Services;
+using ManagedIdentityPoC.Data;
+using ManagedIdentityPoC.Data.Interfaces;
+using ManagedIdentityPoC.Data.Repositories;
 using ManagedIdentityPoC.Integration.TableStorage.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,8 +56,14 @@ namespace ManagedIdentityPoC.API
                 services.AddScoped(c => new TableServiceClient(new Uri(storageUri), credential));
                 */
             }
+
+            services.AddDbContext<DataContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DBConnectionString"))
+                );
+
             services.AddScoped<IAppService, AppService>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddAutoMapperSetup();
 
             services.AddSwaggerGen(c =>
@@ -74,7 +84,7 @@ namespace ManagedIdentityPoC.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
         {
             //if (env.IsDevelopment())
             {
@@ -84,6 +94,8 @@ namespace ManagedIdentityPoC.API
             }
 
             app.UseCors("AllRequests");
+
+            dataContext.Database.Migrate();
 
             app.UseHttpsRedirection();
 

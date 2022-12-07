@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedIdentityPoC.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedIdentityPoC.API", "ManagedIdentityPoC.API\ManagedIdentityPoC.API.csproj", "{8B305664-8EF3-4F7E-AB85-F408DE309B9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedIdentityPoC.Data", "ManagedIdentityPoC.Data\ManagedIdentityPoC.Data.csproj", "{FC3529F3-2B76-4822-9485-8214C13D84E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8B305664-8EF3-4F7E-AB85-F408DE309B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B305664-8EF3-4F7E-AB85-F408DE309B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B305664-8EF3-4F7E-AB85-F408DE309B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3529F3-2B76-4822-9485-8214C13D84E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3529F3-2B76-4822-9485-8214C13D84E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3529F3-2B76-4822-9485-8214C13D84E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3529F3-2B76-4822-9485-8214C13D84E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

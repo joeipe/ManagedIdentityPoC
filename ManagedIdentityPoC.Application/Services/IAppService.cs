@@ -15,5 +15,16 @@ namespace ManagedIdentityPoC.Application.Services
         Task UpdatePersonAsync(PersonDto value);
 
         Task DeletePersonAsync(string partitionKey, string rowKey);
+
+
+        Task<IList<CountryDto>> GetAllCountriesAsync();
+
+        Task<CountryDto> GetCountryByIdAsync(int id);
+
+        Task AddCountryAsync(CountryDto value);
+
+        Task UpdateCountryAsync(CountryDto value);
+
+        Task DeleteCountryAsync(int id);
     }
 }

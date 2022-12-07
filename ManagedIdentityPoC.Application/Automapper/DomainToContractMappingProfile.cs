@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ManagedIdentityPoC.Contract;
+using ManagedIdentityPoC.Data.Domain;
 using ManagedIdentityPoC.Integration.TableStorage.Domain;
 
 namespace ManagedIdentityPoC.Application.Automapper
@@ -9,6 +10,7 @@ namespace ManagedIdentityPoC.Application.Automapper
         public DomainToContractMappingProfile()
         {
             CreateMap<PersonEntity, PersonDto>();
+            CreateMap<CountryEntity, CountryDto>();
         }
     }
 }

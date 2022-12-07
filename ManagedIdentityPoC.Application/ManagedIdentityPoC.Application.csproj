@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ManagedIdentityPoC.Contract\ManagedIdentityPoC.Contract.csproj" />
+    <ProjectReference Include="..\ManagedIdentityPoC.Data\ManagedIdentityPoC.Data.csproj" />
     <ProjectReference Include="..\ManagedIdentityPoC.Integration.TableStorage\ManagedIdentityPoC.Integration.TableStorage.csproj" />
   </ItemGroup>
 
