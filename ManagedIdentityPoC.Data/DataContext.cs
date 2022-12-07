@@ -18,13 +18,18 @@ namespace ManagedIdentityPoC.Data
         }
         */
 
-        public DataContext(DbContextOptions<DataContext> options)
+        public DataContext(DbContextOptions<DataContext> options, IConfiguration configuration)
             : base(options)
         {
-            var connection = (SqlConnection)Database.GetDbConnection();
-            var credential = new DefaultAzureCredential();
-            var token = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { "https://database.windows.net/.default" }));
-            connection.AccessToken = token.Token;
+            var isLocal = bool.Parse(configuration["isLocal"]);
+
+            if (!isLocal)
+            {
+                var connection = (SqlConnection)Database.GetDbConnection();
+                var credential = new DefaultAzureCredential();
+                var token = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { "https://database.windows.net/.default" }));
+                connection.AccessToken = token.Token;
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
